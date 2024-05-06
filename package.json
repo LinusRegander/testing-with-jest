@@ -14,5 +14,8 @@
     "url": "(https://github.com/LinusRegander/testing-with-jest)"
   },
   "author": "Linus Regander",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "underscore": "^1.13.6"
+  }
 }
