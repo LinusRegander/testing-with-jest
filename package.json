@@ -16,6 +16,8 @@
   "author": "Linus Regander",
   "license": "MIT",
   "dependencies": {
+    "geckodriver": "^4.4.0",
+    "selenium-webdriver": "^4.20.0",
     "underscore": "^1.13.6"
   },
   "devDependencies": {
