@@ -60,16 +60,40 @@ describe('Stack Operations', () => {
     });
 });
 
-describe('Test error situations', () => {
+describe('Test error or peculiar situations', () => {
     test('Peek empty stack', async () => {
         let stack = await driver.findElement(By.id('top_of_stack')).getText();
         expect(stack).toEqual("n/a");
-    })
+    });
 
     test('Pop empty stack', async () => {
+        let expectedText("Tog bort undefined");
         let popButton = await driver.findElement(By.id('pop'));
         await popButton.click();
-        let text = await driver.switchTo.alert();
-        expect(text).toEqual("Tog bort undefined");
-    })
+        let recievedText = await driver.switchTo.alert().text();
+        expect(recievedText).toEqual(expectedText);
+    });
+
+    test ('Push different numbers and stack text should change', () => {
+        let stack;
+
+        await addToStack(2);
+        stack = await driver.findElement(By.id('top_of_stack')).getText();
+        expect(stack).toEqual(2);
+
+        jest.setTimeout(1000);
+        
+        await addToStack(5);
+        newStack = await driver.findElement(By.id('top_of_stack')).getText();
+        expect(newStack).toEqual(5)
+    });
 })
+
+// Function for adding numbers to stack
+async function addToStack(number) {
+    let pushButton = await driver.findElement(By.id('push'));
+    await pushButton.click();
+    let alert = await driver.switchTo().alert();
+    await alert.sendKeys(number);
+    await alert.accept();
+}
