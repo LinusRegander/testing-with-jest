@@ -4,7 +4,7 @@ require('geckodriver');
 const fileUnderTest = 'file://' + __dirname.replace(/ /g, '%20') + '/../dist/index.html';
 const defaultTimeout = 5000;
 let driver;
-jest.setTimeout(1000 * 60); // 5 minuter
+jest.setTimeout(1000 * 60 * 5); // 5 minuter
 
 // Det här körs innan vi kör testerna för att säkerställa att Firefox är igång
 beforeAll(async () => {
@@ -69,7 +69,7 @@ describe('Test error situations', () => {
     test('Pop empty stack', async () => {
         let popButton = await driver.findElement(By.id('pop'));
         await popButton.click();
-        let alert = await driver.switchTo().alert();
-        console.log(await alert.getText());
+        let text = await driver.switchTo.alert();
+        expect(text).toEqual("Tog bort undefined");
     })
 })
