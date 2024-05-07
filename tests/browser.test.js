@@ -84,8 +84,8 @@ describe('Test error or peculiar situations', () => {
         jest.setTimeout(1000);
         
         await addToStack(5);
-        newStack = await driver.findElement(By.id('top_of_stack')).getText();
-        expect(newStack).toEqual(5)
+        stack = await driver.findElement(By.id('top_of_stack')).getText();
+        expect(stack).toEqual(5)
     });
 })
 
